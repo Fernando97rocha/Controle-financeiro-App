@@ -1,0 +1,74 @@
+.component{
+    display: flex;
+    align-items: center;
+    width: 180px;
+    height: 40px;
+
+}
+
+#name-initial{
+    background-color: blue;
+    border-radius: 100%;
+    width: 20%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFF;
+}
+
+#logged-name{
+    width: fit-content;
+    margin-left: 15px;
+}
+
+/* .drop-btn{
+    border: none;
+    background-color: #FFFF;
+    font-size: 20px;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: -0.1px;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+    box-shadow: 2px 2px 15px 1px rgb(0, 0, 0, 0.15);
+
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+ul li{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 15px;
+}
+
+ul li:hover{
+    background-color: rgb(0, 0, 0, 0.05);
+    box-shadow: 2px 2px 15px 1px rgb(0, 0, 0, 0.2);
+}
+
+.drop-btn:hover{
+    cursor: pointer;
+    color: red;
+}
+
+.drop-btn:hover .dropdown-content{
+    display: block;
+}
+
+*/
