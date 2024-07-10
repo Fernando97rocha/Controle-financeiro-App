@@ -29,7 +29,6 @@
 }
 
 p{
-    margin-bottom: -1em;
     width: 100%;
     font-size: 20px;
 }
@@ -38,6 +37,8 @@ h1 {
     width: 100%;
     color: #44843F;
     font-size: 45px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 #inputs{
