@@ -1,0 +1,62 @@
+#box{
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5%;
+}
+
+section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 25%;
+    width: 100%;
+}
+
+.div-mes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: blueviolet;
+    width: 70%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.btn-mes{
+    border-radius: 50px;
+    width: 13%;
+    height: 80%;
+}
+
+.nova-transacao{
+    background-color: aquamarine;
+    border: none;
+    width: 80%;
+    height: 25%;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+}
+
+.nova-transacao:hover{
+    position: relative;
+    top: -2px;
+    width: 82%;
+    height: 25%;
+}
+
+#receita{
+    background-color: #6BC840;
+}
+
+#despesa{
+    background-color: #F68282;
+}
