@@ -8,3 +8,13 @@
     box-shadow: 2px 2px 15px 1px rgb(0, 0, 0, 0.3);
     clip-path: inset(0px -10px -10px -10px);
 }
+
+#transactions-content{
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 45px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}

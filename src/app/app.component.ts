@@ -7,6 +7,7 @@ import { AmountDisplayComponent } from './components/amount-display/amount-displ
 import { MonthAndNewObjectsComponent } from './components/month-and-new-objects/month-and-new-objects.component';
 import { UserNameLoggedComponent } from './components/user-name-logged/user-name-logged.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
+import { FixedTransactionsComponent } from './components/fixed-transactions/fixed-transactions.component';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ import { TransactionsComponent } from './components/transactions/transactions.co
     AmountDisplayComponent,
     MonthAndNewObjectsComponent,
     UserNameLoggedComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    FixedTransactionsComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

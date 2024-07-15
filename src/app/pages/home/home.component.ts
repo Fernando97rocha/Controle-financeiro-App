@@ -4,6 +4,7 @@ import { AmountDisplayComponent } from '../../components/amount-display/amount-d
 import { MonthAndNewObjectsComponent } from '../../components/month-and-new-objects/month-and-new-objects.component';
 import { UserNameLoggedComponent } from '../../components/user-name-logged/user-name-logged.component';
 import { TransactionsComponent } from '../../components/transactions/transactions.component';
+import { FixedTransactionsComponent } from '../../components/fixed-transactions/fixed-transactions.component';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ import { TransactionsComponent } from '../../components/transactions/transaction
     AmountDisplayComponent,
     MonthAndNewObjectsComponent,
     UserNameLoggedComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    FixedTransactionsComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
