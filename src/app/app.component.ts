@@ -8,6 +8,7 @@ import { MonthAndNewObjectsComponent } from './components/month-and-new-objects/
 import { UserNameLoggedComponent } from './components/user-name-logged/user-name-logged.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { FixedTransactionsComponent } from './components/fixed-transactions/fixed-transactions.component';
+import { CreateIncomePopUpComponent } from './components/create-income-pop-up/create-income-pop-up.component';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import { FixedTransactionsComponent } from './components/fixed-transactions/fixe
     MonthAndNewObjectsComponent,
     UserNameLoggedComponent,
     TransactionsComponent,
-    FixedTransactionsComponent
+    FixedTransactionsComponent,
+    CreateIncomePopUpComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

@@ -1,5 +1,7 @@
 .box{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     box-shadow: 2px 2px 15px 1px rgb(0, 0, 0, 0.3);
     border-radius: 15px;
@@ -7,18 +9,64 @@
 }
 
 section{
-    width: 500px;
     height: 80%;
 
     display: flex;
     grid-template-columns: auto auto auto;
-    gap: 15px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 h3{
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.despesas{
+    width: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.receitas{
+    width: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+P{
+    text-align: center;
+}
+
+ul{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+li{
+    width: 90%;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 15px;
+}
+
+.receitas > ul > li{
+    background-color: #BEE5B2;
+}
+
+.despesas > ul > li{
+    background-color: #F8BCBC;
 }
