@@ -1,29 +1,37 @@
 <div class="box">
-
-    <h3>Últimas transações</h3>
-
     <section>
-        <div class="receitas">
-            <p>Receitas</p>
-            <ul>
-                <li class="li-receitas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-receitas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-receitas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-receitas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-receitas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-receitas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-receitas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-receitas"> <p>Categoria</p> <p>R$500,00</p> </li>
+        <div class="incomes">
+            <p class="title">Receitas</p>
+            <ul >
+                <li class="li-income li-title-income">
+                    <span class="span1">Valor</span>
+                    <span class="span2">Descrição</span>
+                    <span class="span3">Categoria</span>
+                </li>
+            </ul>
+            <ul *ngFor="let income of incomes">
+                <li class="li-income">
+                    <span class="span1">R${{income.value.toFixed(2).replace('.', ',')}}</span>
+                    <span class="span2">{{income.description}}</span>
+                    <span class="span3">{{income.category}}</span>
+                </li>
             </ul>
         </div>
         <div class="despesas">
             <p>Despesas</p>
-            <ul>
-                <li class="li-despesas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-despesas"> <p>Categoria</p> <p>R$500,00</p> </li>
-                <li class="li-despesas"> <p>Categoria</p> <p>R$500,00</p> </li>
-
-                
+            <ul >
+                <li class="li-expense li-title-expense">
+                    <span class="span1">Valor</span>
+                    <span class="span2">Descrição</span>
+                    <span class="span3">Categoria</span>
+                </li>
+            </ul>
+            <ul *ngFor="let expense of expenses">
+                <li class="li-expense">
+                    <span class="span1">R${{expense.value.toFixed(2).replace('.', ',')}}</span>
+                    <span class="span2">{{expense.description}}</span>
+                    <span class="span3">{{expense.categoryId}}</span>
+                </li>
             </ul>
         </div>
 

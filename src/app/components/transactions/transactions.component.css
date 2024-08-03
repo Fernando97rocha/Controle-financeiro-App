@@ -5,7 +5,7 @@
     flex-direction: column;
     box-shadow: 2px 2px 15px 1px rgb(0, 0, 0, 0.3);
     border-radius: 15px;
-    padding-bottom: 15px;
+    padding: 15px;
 }
 
 section{
@@ -14,59 +14,86 @@ section{
     display: flex;
     grid-template-columns: auto auto auto;
     justify-content: center;
-    align-items: center;
+    align-items:flex-start;
+    gap: 0px;
     margin-bottom: 5px;
 }
 
-h3{
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 .despesas{
-    width: 20em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.receitas{
-    width: 20em;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-P{
+.incomes{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
     text-align: center;
+    font-size: 15px;
 }
 
-ul{
-    width: 100%;
-    margin-top: 10px;
+.li-income{
+    background-color: #BEE5B2;
+    width: 380px;
+    height: fit-content;
+    margin-bottom: 5px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
-li{
-    width: 90%;
-    height: 35px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    padding: 15px;
-}
-
-.receitas > ul > li{
-    background-color: #BEE5B2;
-}
-
-.despesas > ul > li{
+.li-expense{
     background-color: #F8BCBC;
+    width: 380px;
+    height: min-content;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.li-title-income{
+    background-color: #5d8a4f;
+    color: white;
+}
+
+.li-title-expense{
+    background-color: #d64040;
+    color: white;
+}
+
+span {}
+
+.span1 {
+    width: 150px;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+.span2 {
+    width: 300px;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+.span3 {
+    width: 250px;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 10px;
+    padding-right: 10px;
 }

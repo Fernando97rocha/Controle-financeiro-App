@@ -11,14 +11,13 @@
 
 #transactions-content{
 
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 45px;
+    display: flex;
     justify-content: center;
     align-items: center;
+    gap: 50px;
     padding-top: 20px;
 }
 
-.popup{
-    
+app-transactions{
+    width: 800px;
 }
