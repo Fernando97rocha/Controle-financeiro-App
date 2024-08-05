@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IncomeService } from '../../services/API/income.service';
 import { ExpenseService } from '../../services/API/expense.service';
+import { AppServiceService } from '../../services/app-service.service';
+import { Income } from '../../models/income-model';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class AmountDisplayComponent implements OnInit{
   expenseSum: number = 0;
   incomeSumToString!: string;
   expenseSumToString!: string;
-  constructor(private incomeService: IncomeService, private  expenseService: ExpenseService) {}
+  constructor(private appService: AppServiceService,private incomeService: IncomeService, private  expenseService: ExpenseService) {}
 
   ngOnInit(): void {
     this.incomeService.getIncomes().subscribe(data => {
@@ -25,6 +27,11 @@ export class AmountDisplayComponent implements OnInit{
         this.incomeSum += income.value;
       })
 
+      this.incomeSumToString = this.incomeSum.toFixed(2).replace(".", ",");
+    })
+
+    this.appService.EmmitDataChange.subscribe((obj: Income) => {
+      this.incomeSum += obj.value;
       this.incomeSumToString = this.incomeSum.toFixed(2).replace(".", ",");
     })
 

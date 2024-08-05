@@ -6,6 +6,8 @@ import { IncomeService } from '../../services/API/income.service';
 import { ExpenseService } from '../../services/API/expense.service';
 import { Category } from '../../models/category-model';
 import { CategoryService } from '../../services/API/category.service';
+import { SharedDataService } from '../../shared-data.service';
+import { AppServiceService } from '../../services/app-service.service';
 
 @Component({
   selector: 'app-transactions',
@@ -16,24 +18,14 @@ import { CategoryService } from '../../services/API/category.service';
 })
 export class TransactionsComponent implements OnInit{
 
+  private newIncome!: Income;
+
   incomes: Income[] = [];
   expenses: Expense[] = [];
   categories: Category[] = [];
 
-  incomeValueSum = 0;
-  expenseValueSum = 0;
+  constructor(private appService: AppServiceService, private sharedDataService: SharedDataService ,private incomeService: IncomeService, private expenseService: ExpenseService, private categoryService: CategoryService) {
 
-  constructor(private incomeService: IncomeService, private expenseService: ExpenseService, private categoryService: CategoryService) {
-
-  }
-
-
-  incomeSum(income : Income) {
-    return this.incomeValueSum += income.value;
-  }
-
-  expenseSum(expense : Expense) {
-    return this.expenseValueSum += expense.value;
   }
 
   putCategoryNameIntoIncome(income: Income) {
@@ -52,6 +44,15 @@ export class TransactionsComponent implements OnInit{
 
     this.incomeService.getIncomes().subscribe((data) => {
       this.incomes = data;
+
+      this.incomes.forEach(income => {
+        this.putCategoryNameIntoIncome(income);
+      })
+    })
+
+    this.appService.EmmitDataChange.subscribe((obj: Income) => {
+      this.newIncome = obj;
+      this.incomes.unshift(this.newIncome)
       this.incomes.forEach(income => {
         this.putCategoryNameIntoIncome(income);
       })

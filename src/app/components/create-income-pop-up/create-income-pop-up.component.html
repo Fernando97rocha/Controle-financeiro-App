@@ -4,7 +4,10 @@
 
     <div #divCategory class="category">
         <select name="categorias" id="categorias" name="category" [(ngModel)]="category">
-            <option value="cat0">-Selecione uma Categoria-</option>
+            @if (categories.length === 0) {
+                <option value="">Selecione uma categoria</option>
+            }
+            <option value="">selecione uma categoria</option>
             <option *ngFor="let category of categories">{{category.name}}</option>
         </select>
         <button type="button" class="submit-btn" (click)="newCategoryDisplay()">Nova Categoria</button>

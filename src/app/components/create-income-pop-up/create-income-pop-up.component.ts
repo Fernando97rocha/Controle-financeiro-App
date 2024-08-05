@@ -5,6 +5,8 @@ import { Category } from '../../models/category-model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IncomeService } from '../../services/API/income.service';
+import { SharedDataService } from '../../shared-data.service';
+import { AppServiceService } from '../../services/app-service.service';
 
 @Component({
   selector: 'app-create-income-pop-up',
@@ -28,7 +30,9 @@ export class CreateIncomePopUpComponent implements OnInit {
 
   constructor (public dialogRef: MatDialogRef<CreateIncomePopUpComponent>, 
               private incomeService: IncomeService, 
-              private categoryService: CategoryService) {}
+              private categoryService: CategoryService,
+              private sharedDataService: SharedDataService,
+              private appService: AppServiceService) {}
 
   ngOnInit(): void {
     
@@ -59,7 +63,6 @@ export class CreateIncomePopUpComponent implements OnInit {
     if (this.category.length === 0){
       alert('A categoria não pode ser vazia')
     }
-
 
     this.categories.forEach(cat => {
       if (cat.name === this.category) {
@@ -100,11 +103,15 @@ export class CreateIncomePopUpComponent implements OnInit {
       value: Number(this.amount.replace(',', '.'))
     }
 
+    
+
     if (this.amount.length === 0 || this.description.length === 0 || this.category.length === 0) {
       alert('É necessário preencher todos os valores')
       
     } else {
       this.incomeService.addNewIncome(newIncome).subscribe();
+      this.appService.putIncomes(newIncome)
+      console.log(this.appService.getIncomes())
       this.cancel();
     }
 
