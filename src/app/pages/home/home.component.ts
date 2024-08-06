@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit{
       console.log('Ativou')
   }
 
-
   onDataAdded() {
     // Aqui você pode realizar qualquer lógica adicional necessária
     this.sharedDataService.data$.subscribe(updatedData => {

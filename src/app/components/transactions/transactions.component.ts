@@ -50,14 +50,14 @@ export class TransactionsComponent implements OnInit{
       })
     })
 
+
     this.appService.EmmitDataChange.subscribe((obj: Income) => {
       this.newIncome = obj;
+      this.putCategoryNameIntoIncome(this.newIncome)
       this.incomes.unshift(this.newIncome)
-      this.incomes.forEach(income => {
-        this.putCategoryNameIntoIncome(income);
-      })
+      console.log(this.categories, "aqui")
     })
-      
+    
     this.expenseService.getExpenses().subscribe((data) => {
       this.expenses = data;
     })

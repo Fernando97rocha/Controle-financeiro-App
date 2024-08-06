@@ -31,7 +31,6 @@ export class CreateIncomePopUpComponent implements OnInit {
   constructor (public dialogRef: MatDialogRef<CreateIncomePopUpComponent>, 
               private incomeService: IncomeService, 
               private categoryService: CategoryService,
-              private sharedDataService: SharedDataService,
               private appService: AppServiceService) {}
 
   ngOnInit(): void {
@@ -74,6 +73,7 @@ export class CreateIncomePopUpComponent implements OnInit {
       const newCategory = {
         name: this.category
       }
+
       this.categoryService.postNewCategory(newCategory).subscribe( newCategory => {
         this.categories.push(newCategory);
       });
@@ -85,7 +85,7 @@ export class CreateIncomePopUpComponent implements OnInit {
     this.divNewCategory.nativeElement.classList.remove('new-category')
     this.divNewCategory.nativeElement.classList.add('event-to-hide')
     this.divCategory.nativeElement.classList.remove('event-to-hide')
-    console.log(this.category, 'colocar este valor na tela depois sem botão')
+
   }
 
   onSubmit() {
@@ -99,19 +99,17 @@ export class CreateIncomePopUpComponent implements OnInit {
     const newIncome = {
       description: this.description,
       categoryId: this.categoryId,
-
+      category: this.category,
       value: Number(this.amount.replace(',', '.'))
     }
-
-    
 
     if (this.amount.length === 0 || this.description.length === 0 || this.category.length === 0) {
       alert('É necessário preencher todos os valores')
       
     } else {
       this.incomeService.addNewIncome(newIncome).subscribe();
+      console.log(newIncome)
       this.appService.putIncomes(newIncome)
-      console.log(this.appService.getIncomes())
       this.cancel();
     }
 
