@@ -6,7 +6,7 @@ import { UserNameLoggedComponent } from '../../components/user-name-logged/user-
 import { TransactionsComponent } from '../../components/transactions/transactions.component';
 import { FixedTransactionsComponent } from '../../components/fixed-transactions/fixed-transactions.component';
 import { CreateIncomePopUpComponent } from '../../components/create-income-pop-up/create-income-pop-up.component';
-import { SharedDataService } from '../../shared-data.service';
+import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
   selector: 'app-home',
@@ -25,17 +25,10 @@ import { SharedDataService } from '../../shared-data.service';
 })
 export class HomeComponent implements OnInit{
 
-  constructor( private sharedDataService: SharedDataService) {}
+  constructor() {}
 
   ngOnInit(): void {
       console.log('Ativou')
   }
 
-  onDataAdded() {
-    // Aqui você pode realizar qualquer lógica adicional necessária
-    this.sharedDataService.data$.subscribe(updatedData => {
-      // Atualiza o DisplayComponent diretamente ou via outro método
-      console.log('Dados atualizados', updatedData);
-    });
-  }
 }

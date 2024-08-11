@@ -4,6 +4,7 @@ import { IncomeService } from '../../services/API/income.service';
 import { ExpenseService } from '../../services/API/expense.service';
 import { AppServiceService } from '../../services/app-service.service';
 import { Income } from '../../models/income-model';
+import { Expense } from '../../models/expense-model';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class AmountDisplayComponent implements OnInit{
   constructor(private appService: AppServiceService,private incomeService: IncomeService, private  expenseService: ExpenseService) {}
 
   ngOnInit(): void {
+    //incomes
     this.incomeService.getIncomes().subscribe(data => {
       data.forEach(income => {
         this.incomeSum += income.value;
@@ -30,17 +32,24 @@ export class AmountDisplayComponent implements OnInit{
       this.incomeSumToString = this.incomeSum.toFixed(2).replace(".", ",");
     })
 
-    this.appService.EmmitDataChange.subscribe((obj: Income) => {
+    this.appService.EmmitDataChangeIncome.subscribe((obj: Income) => {
       this.incomeSum += obj.value;
       this.incomeSumToString = this.incomeSum.toFixed(2).replace(".", ",");
     })
 
+
+    //expenses
     this.expenseService.getExpenses().subscribe(data => {
-      data.forEach(income => {
-        this.expenseSum += income.value;
+      data.forEach(expense => {
+        this.expenseSum += expense.value;
       })
 
       this.expenseSum *= -1;
+      this.expenseSumToString = this.expenseSum.toFixed(2).replace(".", ",");
+    })
+
+    this.appService.EmmitDataChangeExpense.subscribe((obj: Expense) => {
+      this.expenseSum += obj.value;
       this.expenseSumToString = this.expenseSum.toFixed(2).replace(".", ",");
     })
   }

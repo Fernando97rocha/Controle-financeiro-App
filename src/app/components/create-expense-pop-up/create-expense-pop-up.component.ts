@@ -1,35 +1,34 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Category } from '../../models/category-model';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CategoryService } from '../../services/API/category.service';
-import { Category } from '../../models/category-model';
+import { AppServiceService } from '../../services/app-service.service';
+import { ExpenseService } from '../../services/API/expense.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IncomeService } from '../../services/API/income.service';
-import { AppServiceService } from '../../services/app-service.service';
 
 @Component({
-  selector: 'app-create-income-pop-up',
+  selector: 'app-create-expense-pop-up',
   standalone: true,
   imports: [MatDialogModule, CommonModule, FormsModule],
-  templateUrl: './create-income-pop-up.component.html',
-  styleUrl: './create-income-pop-up.component.css'
+  templateUrl: './create-expense-pop-up.component.html',
+  styleUrl: './create-expense-pop-up.component.css'
 })
-export class CreateIncomePopUpComponent implements OnInit {
-
-  @ViewChild('divCategory') divCategory!: ElementRef;
-  @ViewChild('divNewCategory') divNewCategory!: ElementRef;
+export class CreateExpensePopUpComponent {
+  @ViewChild('divCategoryExpense') divCategory!: ElementRef;
+  @ViewChild('divNewCategoryExpense') divNewCategory!: ElementRef;
 
   categories: Category[] = [];
   categoryToCompare!: string;
 
   category: string = '';
   categoryId!: any;
-  categoryType: string = 'income'
+  categoryType: string = 'expense'
   description: string = '';
   amount: string = '';
 
-  constructor (public dialogRef: MatDialogRef<CreateIncomePopUpComponent>, 
-              private incomeService: IncomeService, 
+  constructor (public dialogRef: MatDialogRef<CreateExpensePopUpComponent>, 
+              private expenseService: ExpenseService, 
               private categoryService: CategoryService,
               private appService: AppServiceService) {}
 
@@ -102,7 +101,7 @@ export class CreateIncomePopUpComponent implements OnInit {
       }
     })
     
-    const newIncome = {
+    const newExpense = {
       description: this.description,
       categoryId: this.categoryId,
       category: this.category,
@@ -113,9 +112,9 @@ export class CreateIncomePopUpComponent implements OnInit {
       alert('É necessário preencher todos os valores')
       
     } else {
-      this.incomeService.addNewIncome(newIncome).subscribe();
-      console.log(newIncome)
-      this.appService.putIncomes(newIncome)
+      this.expenseService.addNewExpense(newExpense).subscribe();
+      console.log(newExpense)
+      this.appService.putExpenses(newExpense)
       this.cancel();
     }
 

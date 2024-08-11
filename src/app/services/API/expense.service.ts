@@ -8,11 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class ExpenseService {
 
-  private expenseUrl = 'http://localhost:8080/expenses/list';
 
-  constructor(private http: HttpClient) { }
+  private expenseListUrl = 'http://localhost:8080/expenses/list';
+  private newExpenseUrl = 'http://localhost:8080/expenses';
 
-  getExpenses() : Observable<Expense[]> {
-    return this.http.get<Expense[]>(this.expenseUrl)
+  constructor(private http: HttpClient) {}
+
+  getExpenses () : Observable<Expense[]> {
+    return this.http.get<Expense[]>(this.expenseListUrl);
+  }
+
+  addNewExpense (expense: Expense) {
+    return this.http.post<Expense>(`${this.newExpenseUrl}`, expense)
   }
 }
