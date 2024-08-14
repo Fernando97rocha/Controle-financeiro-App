@@ -113,14 +113,15 @@ export class CreateIncomePopUpComponent implements OnInit {
       alert('É necessário preencher todos os valores')
       
     } else {
-      this.incomeService.addNewIncome(newIncome).subscribe();
-      console.log(newIncome)
-      this.appService.putIncomes(newIncome)
+      this.incomeService.addNewIncome(newIncome).subscribe(response => {
+        this.appService.putIncomes(response)
+      });
       this.cancel();
     }
 
     this.description = '';
     this.amount = '';
-    this.category = ''; 
+    this.category = '';
+
   }
 }

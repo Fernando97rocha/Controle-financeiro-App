@@ -10,6 +10,7 @@ export class IncomeService {
 
   private incomeListUrl = 'http://localhost:8080/incomes/list';
   private newIncomeUrl = 'http://localhost:8080/incomes';
+  private deleteIncomeUrl = 'http://localhost:8080/incomes/';
 
   constructor(private http: HttpClient) {}
 
@@ -21,4 +22,7 @@ export class IncomeService {
     return this.http.post<Income>(`${this.newIncomeUrl}`, income)
   }
 
+  deleteIncome(income: Income) {
+    return this.http.delete<Income>(`${this.deleteIncomeUrl + income.id}`)
+  }
 }

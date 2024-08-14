@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Income } from '../../models/income-model';
 import { CommonModule } from '@angular/common';
 import { Expense } from '../../models/expense-model';
@@ -8,6 +8,8 @@ import { Category } from '../../models/category-model';
 import { CategoryService } from '../../services/API/category.service';
 import { SharedDataService } from '../../services/shared-data.service';
 import { AppServiceService } from '../../services/app-service.service';
+import { Subscription } from 'rxjs';
+import { log } from 'console';
 
 @Component({
   selector: 'app-transactions',
@@ -25,8 +27,7 @@ export class TransactionsComponent implements OnInit{
   expenses: Expense[] = [];
   categories: Category[] = [];
 
-  constructor(private appService: AppServiceService, private sharedDataService: SharedDataService ,private incomeService: IncomeService, private expenseService: ExpenseService, private categoryService: CategoryService) {
-
+  constructor(private appService: AppServiceService,private incomeService: IncomeService, private expenseService: ExpenseService, private categoryService: CategoryService) {
   }
 
   putCategoryNameIntoIncome(income: Income) {
@@ -63,7 +64,8 @@ export class TransactionsComponent implements OnInit{
     this.appService.EmmitDataChangeIncome.subscribe((obj: Income) => {
       this.newIncome = obj;
       this.putCategoryNameIntoIncome(this.newIncome)
-      this.incomes.unshift(this.newIncome)
+      this.incomes.push(this.newIncome)
+
     })
 
     
@@ -78,7 +80,21 @@ export class TransactionsComponent implements OnInit{
     this.appService.EmmitDataChangeExpense.subscribe((obj: Expense) => {
       this.newExpense = obj;
       this.putCategoryNameIntoExpense(this.newExpense)
-      this.expenses.unshift(this.newExpense)
+      this.expenses.push(this.newExpense)
+    })
+
+  }
+
+  deleteIncome(income: Income):void {
+
+    const incomeId = income.id
+    let index = 0;
+    this.incomes.forEach(income => {
+      if (income.id == incomeId ) {
+        index = this.incomes.indexOf(income);
+        this.incomeService.deleteIncome(income).subscribe();
+        this.incomes.splice(index, 1);
+      }
     })
   }
 }

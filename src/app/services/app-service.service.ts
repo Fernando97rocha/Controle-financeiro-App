@@ -25,6 +25,11 @@ export class AppServiceService {
     this.EmmitDataChangeIncome.emit(income);
   }
 
+  deleteIncome() {
+
+    this.incomes.pop();
+  }
+
   getExpenses() {
     return this.expenses;
   }
