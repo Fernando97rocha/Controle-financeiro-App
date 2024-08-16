@@ -37,7 +37,6 @@ export class AmountDisplayComponent implements OnInit{
       this.incomeSumToString = this.incomeSum.toFixed(2).replace(".", ",");
     })
 
-
     //expenses
     this.expenseService.getExpenses().subscribe(data => {
       data.forEach(expense => {
@@ -52,6 +51,9 @@ export class AmountDisplayComponent implements OnInit{
       this.expenseSum += obj.value;
       this.expenseSumToString = this.expenseSum.toFixed(2).replace(".", ",");
     })
+
+
+
   }
 
 

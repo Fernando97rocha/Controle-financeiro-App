@@ -62,13 +62,13 @@ export class TransactionsComponent implements OnInit{
 
 
     this.appService.EmmitDataChangeIncome.subscribe((obj: Income) => {
-      this.newIncome = obj;
-      this.putCategoryNameIntoIncome(this.newIncome)
-      this.incomes.push(this.newIncome)
-
+      if (obj.value >= 0) {
+        this.newIncome = obj;
+        this.putCategoryNameIntoIncome(this.newIncome)
+        this.incomes.push(this.newIncome)
+      }
     })
 
-    
     this.expenseService.getExpenses().subscribe((data) => {
       this.expenses = data;
 
@@ -94,6 +94,8 @@ export class TransactionsComponent implements OnInit{
         index = this.incomes.indexOf(income);
         this.incomeService.deleteIncome(income).subscribe();
         this.incomes.splice(index, 1);
+        income.value *= -1;
+        this.appService.putIncomes(income);
       }
     })
   }
