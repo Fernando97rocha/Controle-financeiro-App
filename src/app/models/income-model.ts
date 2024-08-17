@@ -3,7 +3,7 @@ export interface Income {
     description: string,
     value: number,
     creationDate?: Date,
-    category?: string,
-    categoryId?: number,
+    category: string,
+    categoryId: number,
     userId?: number
 }

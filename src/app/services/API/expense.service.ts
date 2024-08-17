@@ -11,6 +11,7 @@ export class ExpenseService {
 
   private expenseListUrl = 'http://localhost:8080/expenses/list';
   private newExpenseUrl = 'http://localhost:8080/expenses';
+  private deleteExpenseUrl = 'http://localhost:8080/expenses/';
 
   constructor(private http: HttpClient) {}
 
@@ -20,5 +21,9 @@ export class ExpenseService {
 
   addNewExpense (expense: Expense) {
     return this.http.post<Expense>(`${this.newExpenseUrl}`, expense)
+  }
+
+  deleteExpense (expense: Expense) {
+    return this.http.delete<Expense>(`${this.deleteExpenseUrl + expense.id}` )
   }
 }

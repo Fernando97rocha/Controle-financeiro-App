@@ -6,6 +6,7 @@ import { AppServiceService } from '../../services/app-service.service';
 import { ExpenseService } from '../../services/API/expense.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { response } from 'express';
 
 @Component({
   selector: 'app-create-expense-pop-up',
@@ -112,9 +113,10 @@ export class CreateExpensePopUpComponent {
       alert('É necessário preencher todos os valores')
       
     } else {
-      this.expenseService.addNewExpense(newExpense).subscribe();
-      console.log(newExpense)
-      this.appService.putExpenses(newExpense)
+      this.expenseService.addNewExpense(newExpense).subscribe(response => {
+        response.category = newExpense.category;
+        this.appService.putExpenses(response);
+      });
       this.cancel();
     }
 

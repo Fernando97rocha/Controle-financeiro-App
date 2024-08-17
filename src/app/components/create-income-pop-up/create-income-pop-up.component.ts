@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IncomeService } from '../../services/API/income.service';
 import { AppServiceService } from '../../services/app-service.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-create-income-pop-up',
@@ -114,7 +115,8 @@ export class CreateIncomePopUpComponent implements OnInit {
       
     } else {
       this.incomeService.addNewIncome(newIncome).subscribe(response => {
-        this.appService.putIncomes(response)
+        response.category = newIncome.category;
+        this.appService.putIncomes(response)        
       });
       this.cancel();
     }

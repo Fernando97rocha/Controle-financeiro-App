@@ -64,7 +64,6 @@ export class TransactionsComponent implements OnInit{
     this.appService.EmmitDataChangeIncome.subscribe((obj: Income) => {
       if (obj.value >= 0) {
         this.newIncome = obj;
-        this.putCategoryNameIntoIncome(this.newIncome)
         this.incomes.push(this.newIncome)
       }
     })
@@ -78,9 +77,11 @@ export class TransactionsComponent implements OnInit{
     })
 
     this.appService.EmmitDataChangeExpense.subscribe((obj: Expense) => {
-      this.newExpense = obj;
-      this.putCategoryNameIntoExpense(this.newExpense)
-      this.expenses.push(this.newExpense)
+        if (obj.value <= 0) {
+          this.newExpense = obj;
+          this.expenses.push(this.newExpense)
+        }
+
     })
 
   }
@@ -96,6 +97,22 @@ export class TransactionsComponent implements OnInit{
         this.incomes.splice(index, 1);
         income.value *= -1;
         this.appService.putIncomes(income);
+      }
+    })
+    
+  }
+
+  deleteExpense(expense: Expense):void {
+
+    const expenseId = expense.id
+    let index = 0;
+    this.expenses.forEach(expense => {
+      if (expense.id == expenseId ) {
+        index = this.expenses.indexOf(expense);
+        this.expenseService.deleteExpense(expense).subscribe();
+        this.expenses.splice(index, 1);
+        expense.value *= -1;
+        this.appService.putExpenses(expense);
       }
     })
   }

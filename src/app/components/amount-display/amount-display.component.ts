@@ -43,13 +43,12 @@ export class AmountDisplayComponent implements OnInit{
         this.expenseSum += expense.value;
       })
 
-      this.expenseSum *= -1;
-      this.expenseSumToString = this.expenseSum.toFixed(2).replace(".", ",");
+      this.expenseSumToString = this.expenseSum.toFixed(2).replace(".", ",").replace("-"," ");
     })
 
     this.appService.EmmitDataChangeExpense.subscribe((obj: Expense) => {
       this.expenseSum += obj.value;
-      this.expenseSumToString = this.expenseSum.toFixed(2).replace(".", ",");
+      this.expenseSumToString = this.expenseSum.toFixed(2).replace(".", ",").replace("-"," ");
     })
 
 
