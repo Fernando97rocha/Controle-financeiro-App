@@ -1,17 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { User } from '../../models/user-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginAuthService {
 
-  private LoginUrL = 'http://localhost:8080/auth/login';
+  loginString!: string;
+  passwordString!: string;
+
+  private loginUrL = 'http://localhost:8080/auth/login';
 
   constructor(private http: HttpClient) {}
 
-  login() {
-    this.http.post
+  getData(login: string, password: string) {
+    this.loginString = login;
+    this.passwordString = password;
   }
+
+  login(user : User) {
+    this.http.post<User>(this.loginUrL, user);
+  }
+
+
 }

@@ -5,13 +5,13 @@
         <h1>MeuDinheiro</h1>
         <div id="inputs">
             <label for="email-input">E-mail</label>
-            <input type="email" id="email-input">
+            <input type="email" id="email-input" [(ngModel)]="login">
         
             <label for="password-input">Senha</label>
-            <input type="password" id="password-input">
+            <input type="password" id="password-input" [(ngModel)]="password">
         </div>
         
-        <button name="login-button" id="login-button">LOGIN</button>
+        <button name="login-button" id="login-button" (click)="toLogin()" >LOGIN</button>
     
         <button name="subscribe-button" id="subscribe-button">INSCREVA-SE</button>    
     </div>
