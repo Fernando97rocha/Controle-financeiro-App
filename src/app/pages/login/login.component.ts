@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LoginAuthService } from '../../services/API/login-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +10,26 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
 
   login: string = '';
   password: string = '';
 
-  constructor() {
+  constructor(private loginService: LoginAuthService) {}
 
-  }
-
-
-  toLogin() {
+  getDataToLogin() {
     console.log(this.login, this.password);
-    
+    const user = {
+      login: this.login,
+      password: this.password
+    }
+
+    this.loginService.login(user).subscribe(response => {
+      console.log(response, "response");
+      
+      return response.token;
+    })
   }
+
 }
