@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoginAuthService } from '../../services/API/login-auth.service';
 import { ShareTokenService } from '../../services/share-token.service';
+import { Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent{
   login: string = '';
   password: string = '';
 
-  constructor(private loginService: LoginAuthService, private shareTokenService: ShareTokenService) {}
+  constructor(private router: Router,private loginService: LoginAuthService, private shareTokenService: ShareTokenService) {}
 
   getDataToLogin() {
     const user = {
@@ -27,7 +28,9 @@ export class LoginComponent{
 
     this.loginService.login(user).subscribe(response => {
       this.shareTokenService.setToken(response.token);
-      console.log(response)
+      if(response.token) {
+        this.router.navigateByUrl('home');
+      }
     })
   }
 

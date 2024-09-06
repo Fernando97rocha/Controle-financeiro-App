@@ -12,14 +12,17 @@ export class ShareTokenService {
 
   setToken(token: string) : void {
     this.token = token;
-    localStorage.setItem("authToken", token);
+    if(typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem("authToken", token);
+    }
+    
   }
 
   getToken(): string | null{
-    if (!this.token) {
+    if (!this.token && typeof window !== 'undefined' && window.localStorage) {
       this.token = localStorage.getItem('authToken');
     }
-    console.log(this.token)
+    console.log(this.token, "aqui");
     return this.token;
   }
 

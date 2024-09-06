@@ -1,20 +1,20 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { LoginAuthService } from './API/login-auth.service';
-import { LoginComponent } from '../pages/login/login.component';
 import { ShareTokenService } from './share-token.service';
 
 export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
 
   const sharedTokenService = inject(ShareTokenService)
-  console.log(sharedTokenService.getToken(), "auth aqui")
-  const authToken = sharedTokenService.getToken();
+  console.log(typeof(sharedTokenService.getToken()), "auth aqui")
+  const token = sharedTokenService.getToken();
+  const authToken = token;
 
   const authReq = req.clone({
     setHeaders: {
       Authorization: `Bearer ${authToken}`
     }
   });
+  console.log(authReq);
 
   return next(authReq);
 };
