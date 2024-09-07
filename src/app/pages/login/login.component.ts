@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoginAuthService } from '../../services/API/login-auth.service';
 import { ShareTokenService } from '../../services/share-token.service';
-import { Router, Routes } from '@angular/router';
+import { Router } from '@angular/router';
+import { response } from 'express';
 
 @Component({
   selector: 'app-login',
@@ -28,10 +29,12 @@ export class LoginComponent{
 
     this.loginService.login(user).subscribe(response => {
       this.shareTokenService.setToken(response.token);
-      if(response.token) {
-        this.router.navigateByUrl('home');
+      if(response.token !== null) {
+        this.router.navigateByUrl('home')
       }
+      
     })
+    
   }
 
 }

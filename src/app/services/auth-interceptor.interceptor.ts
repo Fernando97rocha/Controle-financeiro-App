@@ -2,19 +2,21 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ShareTokenService } from './share-token.service';
 
-export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   const sharedTokenService = inject(ShareTokenService)
-  console.log(typeof(sharedTokenService.getToken()), "auth aqui")
   const token = sharedTokenService.getToken();
-  const authToken = token;
 
+  //verificar se a requisição é para URL de login ou se o token está ausente
+  if(req.url.includes('/login') || !token) {
+    return next(req);
+  }
+  console.log(token)
   const authReq = req.clone({
     setHeaders: {
-      Authorization: `Bearer ${authToken}`
+      Authorization: `Bearer ${token}`
     }
   });
-  console.log(authReq);
 
   return next(authReq);
 };
