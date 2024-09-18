@@ -6,7 +6,6 @@ import { UserNameLoggedComponent } from '../../components/user-name-logged/user-
 import { TransactionsComponent } from '../../components/transactions/transactions.component';
 import { FixedTransactionsComponent } from '../../components/fixed-transactions/fixed-transactions.component';
 import { CreateIncomePopUpComponent } from '../../components/create-income-pop-up/create-income-pop-up.component';
-import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
   selector: 'app-home',

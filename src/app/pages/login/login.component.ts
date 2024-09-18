@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginAuthService } from '../../services/API/login-auth.service';
 import { ShareTokenService } from '../../services/share-token.service';
 import { Router } from '@angular/router';
-import { response } from 'express';
 
 @Component({
   selector: 'app-login',

@@ -6,10 +6,7 @@ import { IncomeService } from '../../services/API/income.service';
 import { ExpenseService } from '../../services/API/expense.service';
 import { Category } from '../../models/category-model';
 import { CategoryService } from '../../services/API/category.service';
-import { SharedDataService } from '../../services/shared-data.service';
 import { AppServiceService } from '../../services/app-service.service';
-import { Subscription } from 'rxjs';
-import { log } from 'console';
 
 @Component({
   selector: 'app-transactions',
