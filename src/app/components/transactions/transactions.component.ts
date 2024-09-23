@@ -7,6 +7,7 @@ import { ExpenseService } from '../../services/API/expense.service';
 import { Category } from '../../models/category-model';
 import { CategoryService } from '../../services/API/category.service';
 import { AppServiceService } from '../../services/app-service.service';
+import { MonthsService } from '../../services/months.service';
 
 @Component({
   selector: 'app-transactions',
@@ -24,7 +25,11 @@ export class TransactionsComponent implements OnInit{
   expenses: Expense[] = [];
   categories: Category[] = [];
 
-  constructor(private appService: AppServiceService,private incomeService: IncomeService, private expenseService: ExpenseService, private categoryService: CategoryService) {
+  constructor(private appService: AppServiceService,
+              private incomeService: IncomeService, 
+              private expenseService: ExpenseService, 
+              private categoryService: CategoryService,
+              private monthService: MonthsService) {
   }
 
   putCategoryNameIntoIncome(income: Income) {
@@ -50,8 +55,15 @@ export class TransactionsComponent implements OnInit{
     })
 
     this.incomeService.getIncomes().subscribe((data) => {
-      this.incomes = data;
-
+      
+      data.forEach( obj => {
+        const objMonth = obj.creationDate?.toString().slice(5,7);
+        console.log(objMonth)
+        if ( objMonth === this.monthService.month) {
+          this.incomes.push(obj)
+        }
+      }) 
+      
       this.incomes.forEach(income => {
         this.putCategoryNameIntoIncome(income);
       })
@@ -66,7 +78,15 @@ export class TransactionsComponent implements OnInit{
     })
 
     this.expenseService.getExpenses().subscribe((data) => {
-      this.expenses = data;
+
+      data.forEach( obj => {
+        const objMonth = obj.creationDate?.toString().slice(5,7);
+        console.log(objMonth)
+        console.log(objMonth)
+        if ( objMonth === this.monthService.month) {
+          this.expenses.push(obj);
+        }
+      }) 
 
       this.expenses.forEach(expense => {
         this.putCategoryNameIntoExpense(expense);

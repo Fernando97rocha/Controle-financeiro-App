@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CreateIncomePopUpComponent } from '../create-income-pop-up/create-income-pop-up.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateExpensePopUpComponent } from '../create-expense-pop-up/create-expense-pop-up.component';
+import { MonthsService } from '../../services/months.service';
 
 @Component({
   selector: 'app-month-and-new-objects',
@@ -10,10 +11,15 @@ import { CreateExpensePopUpComponent } from '../create-expense-pop-up/create-exp
   templateUrl: './month-and-new-objects.component.html',
   styleUrl: './month-and-new-objects.component.css'
 })
-export class MonthAndNewObjectsComponent {
+export class MonthAndNewObjectsComponent implements OnInit{
 
-  constructor(public dialog: MatDialog) {
+  public month = '';
 
+  constructor(public dialog: MatDialog, private monthService: MonthsService, ) {
+
+  }
+  ngOnInit(): void {
+    this.showCurrenteMonthName()
   }
 
   openDialogIncome(): void {
@@ -36,5 +42,8 @@ export class MonthAndNewObjectsComponent {
     })
   }
 
-  
+  showCurrenteMonthName() {
+    this.monthService.currentMonth();
+    this.month = this.monthService.currentMonth();    
+  }
 }
