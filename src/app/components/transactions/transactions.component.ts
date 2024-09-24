@@ -56,18 +56,13 @@ export class TransactionsComponent implements OnInit{
 
     this.incomeService.getIncomes().subscribe((data) => {
       
-      data.forEach( obj => {
-        const objMonth = obj.creationDate?.toString().slice(5,7);
-        console.log(objMonth)
-        if ( objMonth === this.monthService.month) {
-          this.incomes.push(obj)
-        }
-      }) 
+      this.incomes = data;
       
       this.incomes.forEach(income => {
         this.putCategoryNameIntoIncome(income);
       })
     })
+
 
 
     this.appService.EmmitDataChangeIncome.subscribe((obj: Income) => {
@@ -132,5 +127,12 @@ export class TransactionsComponent implements OnInit{
         this.appService.putExpenses(expense);
       }
     })
+  }
+
+  showIncomeBySelectedMonth(obj: Income) {
+    const monthSelected = this.monthService.month;
+    const transactionsByMonth = []
+    const incomeMonth = obj.creationDate?.toString().slice(5,7)
+    
   }
 }

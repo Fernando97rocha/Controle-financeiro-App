@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class MonthsService {
 
-  month = '';
+  month: string | null = '';
   months = [
     'Janeiro',
     'Fevereiro',
@@ -26,10 +26,25 @@ export class MonthsService {
   currentMonth() {
     const date = new Date();
     this.month = date.toISOString().slice(5,7);
-    console.log(this.month);
     const monthNumber = Number(this.month)
     return this.months[monthNumber-1]
   }
 
+  backwardMonthNumber() {
+    let monthNumber = Number(this.month) - 1;
+    this.month = String(monthNumber)
+    if (monthNumber !== undefined) {
+      return this.months[monthNumber - 1];
+    }
+    return null;
+  }
 
+  fowardMonthNumber() {
+    let monthNumber = Number(this.month) + 1;
+    this.month = String(monthNumber)
+    if (monthNumber !== undefined) {
+      return this.months[monthNumber - 1];
+    }
+    return null;
+  }
 }

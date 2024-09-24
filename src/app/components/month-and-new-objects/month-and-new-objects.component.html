@@ -1,9 +1,9 @@
 <div id="box" >
 
     <section>
-        <button class="btn-mes"></button>
+        <button class="btn-mes" (click)="toBackwardMonth()"></button>
         <div class="div-mes">{{ month }}</div>
-        <button class="btn-mes"></button>
+        <button class="btn-mes" (click)="toFowardMonth()"></button>
     </section>
 
     <button id="receita" class="nova-transacao" (click)="openDialogIncome()">NOVA RECEITA</button>

@@ -13,13 +13,13 @@ import { MonthsService } from '../../services/months.service';
 })
 export class MonthAndNewObjectsComponent implements OnInit{
 
-  public month = '';
+  public month: null | string = '';
 
   constructor(public dialog: MatDialog, private monthService: MonthsService, ) {
 
   }
   ngOnInit(): void {
-    this.showCurrenteMonthName()
+    this.showCurrentMonthName()
   }
 
   openDialogIncome(): void {
@@ -42,8 +42,16 @@ export class MonthAndNewObjectsComponent implements OnInit{
     })
   }
 
-  showCurrenteMonthName() {
+  showCurrentMonthName() {
     this.monthService.currentMonth();
     this.month = this.monthService.currentMonth();    
+  }
+
+  toBackwardMonth() {
+    this.month = this.monthService.backwardMonthNumber();
+  }
+
+  toFowardMonth() {
+    this.month = this.monthService.fowardMonthNumber();
   }
 }
