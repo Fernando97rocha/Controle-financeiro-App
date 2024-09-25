@@ -50,6 +50,8 @@ export class TransactionsComponent implements OnInit{
 
   ngOnInit(): void {
 
+    this.showIncomeBySelectedMonth();
+
     this.categoryService.getCategories().subscribe(data => {
       this.categories = data;
     })
@@ -129,10 +131,8 @@ export class TransactionsComponent implements OnInit{
     })
   }
 
-  showIncomeBySelectedMonth(obj: Income) {
-    const monthSelected = this.monthService.month;
-    const transactionsByMonth = []
-    const incomeMonth = obj.creationDate?.toString().slice(5,7)
+  showIncomeBySelectedMonth() {
+    this.monthService.months
     
   }
 }

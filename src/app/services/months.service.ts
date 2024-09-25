@@ -30,20 +30,21 @@ export class MonthsService {
     return this.months[monthNumber-1]
   }
 
-  backwardMonthNumber() {
+  backwardMonth() {
     let monthNumber = Number(this.month) - 1;
     this.month = String(monthNumber)
     if (monthNumber !== undefined) {
-      return this.months[monthNumber - 1];
+      return this.months[monthNumber - 2];
     }
     return null;
   }
 
-  fowardMonthNumber() {
+  fowardMonth() {
     let monthNumber = Number(this.month) + 1;
     this.month = String(monthNumber)
     if (monthNumber !== undefined) {
-      return this.months[monthNumber - 1];
+      console.log(this.months[monthNumber- 2])
+      return this.months[monthNumber - 2];
     }
     return null;
   }

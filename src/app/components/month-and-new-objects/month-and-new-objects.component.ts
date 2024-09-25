@@ -47,11 +47,15 @@ export class MonthAndNewObjectsComponent implements OnInit{
     this.month = this.monthService.currentMonth();    
   }
 
+  showSelectedMonthName() {
+    this.month
+  }
+
   toBackwardMonth() {
-    this.month = this.monthService.backwardMonthNumber();
+    this.month = this.monthService.backwardMonth();
   }
 
   toFowardMonth() {
-    this.month = this.monthService.fowardMonthNumber();
+    this.month = this.monthService.fowardMonth();
   }
 }
