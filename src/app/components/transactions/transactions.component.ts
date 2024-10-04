@@ -8,6 +8,7 @@ import { Category } from '../../models/category-model';
 import { CategoryService } from '../../services/API/category.service';
 import { AppServiceService } from '../../services/app-service.service';
 import { MonthsService } from '../../services/months.service';
+import { Console } from 'node:console';
 
 @Component({
   selector: 'app-transactions',
@@ -24,6 +25,22 @@ export class TransactionsComponent implements OnInit{
   incomes: Income[] = [];
   expenses: Expense[] = [];
   categories: Category[] = [];
+  incomesByMonth: Income[] = [];
+
+  months = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+  ]
 
   constructor(private appService: AppServiceService,
               private incomeService: IncomeService, 
@@ -50,22 +67,18 @@ export class TransactionsComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.showIncomeBySelectedMonth();
-
     this.categoryService.getCategories().subscribe(data => {
       this.categories = data;
     })
 
     this.incomeService.getIncomes().subscribe((data) => {
       
+      this.showTransactionsByMonth();
       this.incomes = data;
-      
       this.incomes.forEach(income => {
         this.putCategoryNameIntoIncome(income);
       })
     })
-
-
 
     this.appService.EmmitDataChangeIncome.subscribe((obj: Income) => {
       if (obj.value >= 0) {
@@ -78,8 +91,6 @@ export class TransactionsComponent implements OnInit{
 
       data.forEach( obj => {
         const objMonth = obj.creationDate?.toString().slice(5,7);
-        console.log(objMonth)
-        console.log(objMonth)
         if ( objMonth === this.monthService.month) {
           this.expenses.push(obj);
         }
@@ -98,6 +109,21 @@ export class TransactionsComponent implements OnInit{
 
     })
 
+    this.appService.EmmitDataChangeMonth.subscribe(( obj: string ) => {
+      let monthNumber = String(this.months.indexOf(obj) + 1)
+      console.log(monthNumber);
+      
+      if (obj !== undefined) {
+        this.incomes.forEach( income => {
+          if (this.monthService.getSelectedMonth()) {
+            console.log(this.monthService.getSelectedMonth().name);
+            console.log(this.monthService.getSelectedMonth().numb)
+          }
+        })
+      }
+
+    })
+    
   }
 
   deleteIncome(income: Income):void {
@@ -113,7 +139,6 @@ export class TransactionsComponent implements OnInit{
         this.appService.putIncomes(income);
       }
     })
-    
   }
 
   deleteExpense(expense: Expense):void {
@@ -131,8 +156,8 @@ export class TransactionsComponent implements OnInit{
     })
   }
 
-  showIncomeBySelectedMonth() {
-    this.monthService.months
+  showTransactionsByMonth() {
     
   }
+
 }

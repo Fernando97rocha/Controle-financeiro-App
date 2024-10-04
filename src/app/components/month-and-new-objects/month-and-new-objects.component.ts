@@ -3,6 +3,7 @@ import { CreateIncomePopUpComponent } from '../create-income-pop-up/create-incom
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateExpensePopUpComponent } from '../create-expense-pop-up/create-expense-pop-up.component';
 import { MonthsService } from '../../services/months.service';
+import { AppServiceService } from '../../services/app-service.service';
 
 @Component({
   selector: 'app-month-and-new-objects',
@@ -15,11 +16,13 @@ export class MonthAndNewObjectsComponent implements OnInit{
 
   public month: null | string = '';
 
-  constructor(public dialog: MatDialog, private monthService: MonthsService, ) {
+  constructor(public dialog: MatDialog, private monthService: MonthsService, private appService: AppServiceService) {
 
   }
   ngOnInit(): void {
     this.showCurrentMonthName()
+
+    
   }
 
   openDialogIncome(): void {
@@ -53,9 +56,12 @@ export class MonthAndNewObjectsComponent implements OnInit{
 
   toBackwardMonth() {
     this.month = this.monthService.backwardMonth();
+
   }
 
   toFowardMonth() {
-    this.month = this.monthService.fowardMonth();
+    this.month = this.monthService.forwardMonth();
+    console.log(this.month, 'aqui')
+    this.appService.putMonth(this.month);
   }
 }

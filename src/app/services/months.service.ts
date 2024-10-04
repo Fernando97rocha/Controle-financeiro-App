@@ -33,19 +33,23 @@ export class MonthsService {
   backwardMonth() {
     let monthNumber = Number(this.month) - 1;
     this.month = String(monthNumber)
-    if (monthNumber !== undefined) {
-      return this.months[monthNumber - 2];
-    }
-    return null;
+    console.log(this.month)
+    return this.months[monthNumber - 1];
   }
 
-  fowardMonth() {
+  forwardMonth() {
     let monthNumber = Number(this.month) + 1;
     this.month = String(monthNumber)
-    if (monthNumber !== undefined) {
-      console.log(this.months[monthNumber- 2])
-      return this.months[monthNumber - 2];
+    console.log(this.month)
+    return this.months[monthNumber - 1];
+  }
+
+  getSelectedMonth() {
+    const monthObj = {
+      numb: this.month,
+      name: this.months[Number(this.month) - 1]
     }
-    return null;
+
+    return monthObj;
   }
 }

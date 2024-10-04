@@ -10,9 +10,11 @@ export class AppServiceService {
 
   private incomes : Array<Income> = [];
   private expenses : Array<Expense> = [];
+  private month : string = '';
 
   EmmitDataChangeIncome = new EventEmitter<any>();
   EmmitDataChangeExpense = new EventEmitter<any>();
+  EmmitDataChangeMonth = new EventEmitter<any>();
 
   constructor() { }
 
@@ -34,4 +36,12 @@ export class AppServiceService {
     this.EmmitDataChangeExpense.emit(expense);
   }
 
+  putMonth(month: string): void {
+    this.month = month;
+    this.EmmitDataChangeMonth.emit(month);
+  }
+
+  getMonth() {
+    return this.month;
+  }
 }
